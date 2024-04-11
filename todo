@@ -1,15 +1,35 @@
 
 
 ### store nodes snippet (copy)
-- select nodes
-- get hscript
+- select nodes or subnet
+- generate hscript
 - (convert solver SOP nodes to custom subnet)
 - create popup, user input: snippet_name
 - save script to disk 
 
+/hou_snippets/
 
+snippets_db.json
 
+{"snippets":[
+{
+	"snippet_id":1
+	"name":"fire1"
+	"description":"simple camp fire setup"
+	"tags":["pyro","flames"]
+},
+{
+	"snippet_id":2
+	"name":"smoke"
+	"description":"sparse clustered smoke trail"
+	"tags":["pyro","smoke","cluster","sparse"]
+}
+]}
 
+snippet_0001.hs
+snippet_0002.hs
+
+.
 
 ### search nodes snippets (paste)
 - press shelf tool button or keyboard shortcut
