@@ -1,9 +1,9 @@
-
+> TODO
 
 ### store nodes snippet (copy)
-- select nodes or subnet
-- generate hscript
-- (convert solver SOP nodes to custom subnet)
+X select nodes or subnet
+ > X convert solver SOP nodes to custom subnet
+X generate hscript
 - create popup, user input: snippet_name
 - save script to disk 
 
@@ -35,7 +35,7 @@ snippet_0002.hs
 - press shelf tool button or keyboard shortcut
 - enter the name of the snippet (or part of it: fuzzy search)
 - display matching results (use up/down arrow and enter to select)
-- (convert custom subnets back to solver SOP nodes)
+X convert custom subnets back to solver SOP nodes
 - check if matching context (SOPs!=DOPs)
 - paste nodes
 
