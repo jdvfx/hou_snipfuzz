@@ -48,21 +48,17 @@ def subnet_to_solversop(subnet) -> None:
 
 # -------------------------------------------------------------------
 
-"""
-convert all solver_SOP nodes into custom_subnet nodes
-"""
-for solversop in hou.nodeType("Sop/solver").instances():
-   solversop_to_subnet(solversop)
+def solversops_to_subnets() -> None:
+    for solversop in hou.nodeType("Sop/solver").instances():
+       solversop_to_subnet(solversop)
 
 # -------------------------------------------------------------------
 
-"""
-convert all custom_subnet nodes into solver_SOP nodes
-"""
-for subnet in hou.nodeType("Sop/subnet").instances():
+def subnets_to_solversops() -> None:
     CUSTOM_COLOR = hou.Color((2,0.1,0.5))
-    if subnet.color()==CUSTOM_COLOR:
-        subnet_to_solversop(subnet)
+    for subnet in hou.nodeType("Sop/subnet").instances():
+        if subnet.color()==CUSTOM_COLOR:
+            subnet_to_solversop(subnet)
 
 # -------------------------------------------------------------------
 
