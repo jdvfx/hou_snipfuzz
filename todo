@@ -5,7 +5,7 @@ X select nodes or subnet
  > X convert solver SOP nodes to custom subnet
 X generate hscript
 - create popup, user input: snippet_name
-- save script to disk 
+X save script to disk 
 
 /hou_snippets/
 
