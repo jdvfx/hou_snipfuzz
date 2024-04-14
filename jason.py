@@ -44,7 +44,7 @@ def write_to_json(json_file:str,snippet_data:dict)-> None:
 def get_hscript() -> str:
     return "my_hscript"
 
-def get_latest_id() -> int:
+def get_latest_id(json_file:str) -> int:
     try:
         with open(json_file,"r") as file:
             data = json.load(file)
@@ -78,15 +78,15 @@ def get_config()->dict:
 """ get config """
 config = get_config()
 snippets_location = config["location"]
-json_file = "hscript_snippets_db.json"
+snippets_db = f"{snippets_location}/{config['snippets_db']}"
 
 """ write snippet and store details in json """
 hscript = get_hscript()
-latest_id = get_latest_id()
+latest_id = get_latest_id(json_file=snippets_db)
 write_hscript(snippets_location,hscript,latest_id)
 # user input via GUI
 snippet_data = get_snippet_data(snippet_id=latest_id)
-write_to_json(json_file=json_file,snippet_data=snippet_data)
+write_to_json(json_file=snippets_db,snippet_data=snippet_data)
 
 
 

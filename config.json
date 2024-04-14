@@ -1,3 +1,4 @@
 {
-    "location":"/home/bunker/Desktop/git/hou_snipfuzz/snippets"
+    "location":"/home/bunker/Desktop/git/hou_snipfuzz/data/",
+    "snippets_db":"hou_snippets_db.json"
 }
