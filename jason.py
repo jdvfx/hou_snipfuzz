@@ -96,8 +96,6 @@ with selected nodes
 get hscript code
 get latest snippet ID in jsonDB file
 
-
-
 """
 
 
