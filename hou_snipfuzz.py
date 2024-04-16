@@ -1,8 +1,6 @@
 import json
 import os
 from enum import Enum
-import hou
-
 
 class SearchType(Enum):
     TAG = 0
