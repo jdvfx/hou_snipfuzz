@@ -1,10 +1,20 @@
 import json
 import os
+from enum import Enum
+
+
+class SearchType(Enum):
+    TAG = 0
+    NAME = 1
+    DESCRIPTION = 2
 
 class HouSnipFuzz:
 
     def __init__(self):
-        ...
+
+        config = self.get_config()
+        self.snippets_location = config["location"]
+        self.snippets_db_file = f"{self.snippets_location}/{config['snippets_db']}"
 
     def write_to_json(self,*,json_file:str,snippet_data:dict)-> None:
 
@@ -23,13 +33,19 @@ class HouSnipFuzz:
         return "my_hscript"
 
     def get_latest_id(self,*,json_file:str) -> int:
-        try:
-            with open(json_file,"r") as file:
-                data = json.load(file)
-                last_id = data["data"][-1]["snippet_id"]
-                return last_id+1
-        except Exception:
+        data = self.load_db_file(snippets_db_file=json_file)
+        if data is None:
             return 0
+        else:
+            last_id = data["data"][-1]["snippet_id"]
+            return last_id+1
+
+    def load_db_file(self,*,snippets_db_file:str) -> dict | None:
+        try:
+            with open(snippets_db_file,"r") as file:
+                return json.load(file)
+        except Exception:
+            return None
 
     def get_snippet_data(self,*,snippet_id:int=0) -> dict:
         
@@ -59,13 +75,9 @@ class HouSnipFuzz:
             return json.load(file)
 
     def save_hscript(self) -> None:
-        
-        config = self.get_config()
-        self.snippets_location = config["location"]
-        self.snippets_db = f"{self.snippets_location}/{config['snippets_db']}"
 
         hscript = self.get_hscript()
-        self.latest_id = self.get_latest_id(json_file=self.snippets_db)
+        self.latest_id = self.get_latest_id(json_file=self.snippets_db_file)
 
         self.write_hscript(
             snippets_location   = self.snippets_location,
@@ -74,11 +86,35 @@ class HouSnipFuzz:
         )
         snippet_data = self.get_snippet_data(snippet_id=self.latest_id)
         self.write_to_json(
-            json_file       = self.snippets_db,
+            json_file       = self.snippets_db_file,
             snippet_data    = snippet_data
         )
 
 
+    def search_snippets(self,*,search_string:str,search_type:SearchType):
+
+        data = self.load_db_file(snippets_db_file=self.snippets_db_file)
+        if data is None:
+            return None
+        matches = []
+        
+        for snippet in data["data"]:
+            match search_type:
+
+                case SearchType.TAG:
+                    for tag in snippet["tags"]:
+                        if search_string in tag:
+                            matches.append(snippet["snippet_id"])
+
+                case SearchType.NAME:
+                    if search_string in snippet["name"]:
+                        matches.append(snippet["snippet_id"])
+
+                case SearchType.DESCRIPTION:
+                    if search_string in snippet["description"]:
+                        matches.append(snippet["snippet_id"])
+
+        return matches
 
 
 
