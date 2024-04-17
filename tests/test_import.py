@@ -1,3 +1,7 @@
+from hou_snipfuzz import HouSnipFuzz
+snip = HouSnipFuzz()
+print(snip)
+
 # import importlib.util
 # import sys
 #
@@ -18,10 +22,10 @@
 #         print(foo.__file__)
 
 
-import sys
-sys.path.append('/home/bunker/Desktop/git/hou_snipfuzz')
-import hou_snipfuzz
-a = hou_snipfuzz.HouSnipFuzz()
+# import sys
+# sys.path.append('/home/bunker/Desktop/git/hou_snipfuzz')
+# import hou_snipfuzz
+# a = hou_snipfuzz.HouSnipFuzz()
 
         # print(
 
