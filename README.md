@@ -6,9 +6,9 @@ usefull for creating/sharing node setups
 it's easy to edit/compress/copy to clipboard.
 
 
-## Supported Python Version ##
+## Supported Python & Houdini Versions ##
 
-Python 3.7 or above
+Python 3.10 / Houdini 20.0
 
 
 
