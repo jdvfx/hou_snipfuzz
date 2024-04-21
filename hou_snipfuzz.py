@@ -287,10 +287,6 @@ class SnipFuzz(QtWidgets.QWidget):
         layout.addWidget(self.text)
         layout.addWidget(self.textfield)
         self.setLayout(layout)
-
-        print(layout)
-
-        self.show()
         
     # ----------------------------------------------------------
     def keyPressEvent(self, e):
