@@ -1,0 +1,1 @@
+print("snipfuzz init2 ")

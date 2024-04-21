@@ -1,6 +1,10 @@
+# Python 3.10 / Houdini 20.0
+
 import json
+import pathlib
 import os
 from enum import Enum
+import hou
 
 class SearchType(Enum):
     TAG = 0
@@ -14,6 +18,9 @@ class HouSnipFuzz:
         config = self.get_config()
         self.snippets_location = config["location"]
         self.snippets_db_file = f"{self.snippets_location}/{config['snippets_db']}"
+        self.node_name = None
+
+        print(">>" , self.snippets_location , self.snippets_db_file)
 
     def write_to_json(self,*,json_file:str,snippet_data:dict)-> None:
 
@@ -29,7 +36,7 @@ class HouSnipFuzz:
             json.dump(data, write_file,indent=4)
 
     def get_hscript(self) -> str:
-        return "my_hscript"
+        return self.selected_nodes_to_hscript()
 
     def get_latest_id(self,*,json_file:str) -> int:
         data = self.load_db_file(snippets_db_file=json_file)
@@ -48,7 +55,7 @@ class HouSnipFuzz:
 
     def get_snippet_data(self,*,snippet_id:int=0) -> dict:
         
-        snippet_name = "smoke"
+        snippet_name = self.node_name
         description = "sparse clustered smoke trail"
         tags = ["pyro","smoke","cluster","sparse"]
         
@@ -70,7 +77,9 @@ class HouSnipFuzz:
             file.write(hscript)
 
     def get_config(self)->dict:
-        with open("config.json","r") as file:
+        
+        parent = pathlib.Path(__file__).parent.resolve()
+        with open(f"{parent}/config.json","r") as file:
             return json.load(file)
 
     def save_hscript(self) -> None:
@@ -98,22 +107,109 @@ class HouSnipFuzz:
         matches = []
         
         for snippet in data["data"]:
-            match search_type:
 
+            match search_type:
+            
                 case SearchType.TAG:
                     for tag in snippet["tags"]:
                         if search_string in tag:
                             matches.append(snippet["snippet_id"])
-
+            
                 case SearchType.NAME:
                     if search_string in snippet["name"]:
                         matches.append(snippet["snippet_id"])
-
+            
                 case SearchType.DESCRIPTION:
                     if search_string in snippet["description"]:
                         matches.append(snippet["snippet_id"])
 
         return matches
+
+    #############################################################
+
+    def solversop_to_subnet(self,solver) -> None:
+        """
+        convert solver_SOP node into custom_subnet node
+        """
+        subnet = solver.parent().createNode("subnet")
+        subnet.setPosition(solver.position())
+        
+        CUSTOM_COLOR = hou.Color((2,0.1,0.5))
+        subnet.setColor(CUSTOM_COLOR)
+        
+        # d/s are the 2 nodes inside solver SOP levels
+        # d: dopnet / s:SOP solver
+        hou.copyNodesTo(solver.node("d/s").children(),subnet)
+        
+        for idx, input in enumerate(solver.inputs()):
+            subnet.setInput(idx,input)
+        for idx, output in enumerate(solver.outputs()):
+            output.setInput(0,subnet)
+
+        solver_name = solver.name()
+        solver.destroy()
+        subnet.setName(solver_name)
+
+    # -------------------------------------------------------------------
+
+    def subnet_to_solversop(self,subnet) -> None:
+        """
+        convert custom_subnet node into solver_SOP node
+        """
+        solver = subnet.parent().createNode("solver")
+        solver.setPosition(subnet.position())
+        
+        for solver_child in solver.node("d/s").children():
+            solver_child.destroy()
+            
+        hou.copyNodesTo(subnet.children(),solver.node("d/s"))
+
+        for idx, input in enumerate(subnet.inputs()):
+            solver.setInput(idx,input)  
+        for idx, output in enumerate(subnet.outputs()):
+            output.setInput(0,solver)
+
+        subnet_name = subnet.name()
+        subnet.destroy()
+        solver.setName(subnet_name)
+
+    # -------------------------------------------------------------------
+
+    def solversops_to_subnets(self) -> None:
+        for solversop in hou.nodeType("Sop/solver").instances():
+            self.solversop_to_subnet(solversop)
+
+    # -------------------------------------------------------------------
+
+    def subnets_to_solversops(self) -> None:
+        CUSTOM_COLOR = hou.Color((2,0.1,0.5))
+        for subnet in hou.nodeType("Sop/subnet").instances():
+            if subnet.color()==CUSTOM_COLOR:
+                self.subnet_to_solversop(subnet)
+
+    # -------------------------------------------------------------------
+
+    def selected_nodes_to_hscript(self) -> str:
+        selected_nodes = hou.selectedNodes()
+        if len(selected_nodes)==0:
+            return ""
+        selected_node = selected_nodes[0]
+        parent = selected_node.parent()
+        self.node_name = selected_node.name()
+        subnet = parent.collapseIntoSubnet(selected_nodes,subnet_name="TEMP_subnet")
+        
+        hscript_command='opscript -rbV '+subnet.path()
+        opscript_result = hou.hscript(hscript_command)
+        
+        pos = subnet.position()
+        subnet.setPosition(pos)
+        subnet.extractAndDelete()
+        
+        return opscript_result[0]
+
+    # -------------------------------------------------------------------
+
+
 
 
 

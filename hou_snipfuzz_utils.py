@@ -1,3 +1,14 @@
+import sys
+
+"""
+inside houdini's python shell, get the path of the 'hou' module with:
+print(hou.__file__)
+"""
+
+sys.path.append("/opt/hfs20.0/houdini/python3.10libs")
+import hou
+
+
 # -------------------------------------------------------------------
 
 def solversop_to_subnet(solver) -> None:
@@ -63,7 +74,6 @@ def subnets_to_solversops() -> None:
 # -------------------------------------------------------------------
 
 def selected_nodes_to_hscript() -> str:
-
     selected_nodes = hou.selectedNodes()
     if len(selected_nodes)==0:
         return ""
