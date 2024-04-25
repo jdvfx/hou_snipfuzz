@@ -15,5 +15,6 @@ Python 3.10 / Houdini 20.0
 
 ## Installation
 
-set the files location in config.json
-
+set the files location in config.json:
+    - location: where the snippets are saved on disk
+    - snippets_db: json file containing snippets name,description,tags
