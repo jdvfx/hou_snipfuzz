@@ -1,0 +1,23 @@
+get_config()
+1) json db path
+2) hscript data path
+3) user_name?
+
+select nodes
+convert solversops to custom subnets
+get hscript
+optimize hscript
+create_UI_insert (user input snippet details)
+open DB json 
+insert new item in JSON
+write hscript to disk
+> DONE
+
+OR 
+create_UI_search
+open DB json 
+user search using menus and keyboard
+select one snippet to paste
+source hscript
+convert subnets to solversops
+
