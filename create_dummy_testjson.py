@@ -1,8 +1,6 @@
 import json
 import random
 
-
-
 n = [
     "sphere",
     "pyro setup",
@@ -115,7 +113,8 @@ t = [
 
 json_file = "test.json"
 
-data = {"data": []}
+# data = {"data": []}
+data = {}
 
 for i in range(16):
     print(f">>>> {i}")
@@ -137,7 +136,8 @@ for i in range(16):
         "description": d_,
         "tags": tags
     }
-    data["data"].append(snippet_data)
+
+    data[i] = snippet_data
 
 with open(json_file, "w") as write_file:
     json.dump(data, write_file, indent=4)

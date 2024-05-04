@@ -1,164 +1,152 @@
 {
-    "data": [
-        {
-            "snippet_id": 0,
-            "snippet_name": "sand portal",
-            "description": "smoke trails setup",
-            "tags": [
-                "rest",
-                "clean",
-                "geometry"
-            ]
-        },
-        {
-            "snippet_id": 1,
-            "snippet_name": "cloth tearing",
-            "description": "cloth tearing setup",
-            "tags": [
-                "crash",
-                "xform",
-                "motionblur"
-            ]
-        },
-        {
-            "snippet_id": 2,
-            "snippet_name": "pyro setup",
-            "description": "moutain model",
-            "tags": [
-                "bounds",
-                "contact",
-                "frustum"
-            ]
-        },
-        {
-            "snippet_id": 3,
-            "snippet_name": "magic portal",
-            "description": "instancing setupcrowds setup",
-            "tags": [
-                "position",
-                "decimate",
-                "cleanupsops"
-            ]
-        },
-        {
-            "snippet_id": 4,
-            "snippet_name": "ocean remesh",
-            "description": "color nodes",
-            "tags": [
-                "clustering",
-                "timeoffset",
-                "remesh"
-            ]
-        },
-        {
-            "snippet_id": 5,
-            "snippet_name": "sphere",
-            "description": "simple rigging setup",
-            "tags": [
-                "vector",
-                "vdb",
-                "particles"
-            ]
-        },
-        {
-            "snippet_id": 6,
-            "snippet_name": "sand dunes",
-            "description": "sparks effect",
-            "tags": [
-                "delete",
-                "rename",
-                "fluid"
-            ]
-        },
-        {
-            "snippet_id": 7,
-            "snippet_name": "lightning bolts",
-            "description": "create pre and post roll",
-            "tags": [
-                "emission",
-                "disc",
-                "boxes"
-            ]
-        },
-        {
-            "snippet_id": 8,
-            "snippet_name": "sand explosion",
-            "description": "sop cleanup",
-            "tags": [
-                "xform",
-                "volume",
-                "bounding"
-            ]
-        },
-        {
-            "snippet_id": 9,
-            "snippet_name": "water splash large scale",
-            "description": "reload transform",
-            "tags": [
-                "rotation",
-                "dops",
-                "simulation"
-            ]
-        },
-        {
-            "snippet_id": 10,
-            "snippet_name": "sop occlusion",
-            "description": "retime animation",
-            "tags": [
-                "noise",
-                "retopo",
-                "trans"
-            ]
-        },
-        {
-            "snippet_id": 11,
-            "snippet_name": "water foam solver",
-            "description": "vex code cleanupsimple point cluster",
-            "tags": [
-                "clip",
-                "debug",
-                "bake"
-            ]
-        },
-        {
-            "snippet_id": 12,
-            "snippet_name": "resample time",
-            "description": "smoke upres solver",
-            "tags": [
-                "project",
-                "culling",
-                "vortex"
-            ]
-        },
-        {
-            "snippet_id": 13,
-            "snippet_name": "point clustering",
-            "description": "extract transforms",
-            "tags": [
-                "point",
-                "camera",
-                "filter"
-            ]
-        },
-        {
-            "snippet_id": 14,
-            "snippet_name": "hide some nodes",
-            "description": "reduce polygons",
-            "tags": [
-                "voxel",
-                "mesh",
-                "python"
-            ]
-        },
-        {
-            "snippet_id": 15,
-            "snippet_name": "test snippet",
-            "description": "convert volume to points",
-            "tags": [
-                "sdf",
-                "light",
-                "origin"
-            ]
-        }
-    ]
+    "0": {
+        "snippet_id": 0,
+        "snippet_name": "resample time",
+        "description": "reload transform",
+        "tags": [
+            "dops",
+            "rotation",
+            "rename"
+        ]
+    },
+    "1": {
+        "snippet_id": 1,
+        "snippet_name": "test snippet",
+        "description": "extract transforms",
+        "tags": [
+            "emission",
+            "vdb",
+            "camera"
+        ]
+    },
+    "2": {
+        "snippet_id": 2,
+        "snippet_name": "cloth tearing",
+        "description": "vex code cleanupsimple point cluster",
+        "tags": [
+            "crash",
+            "vector",
+            "python"
+        ]
+    },
+    "3": {
+        "snippet_id": 3,
+        "snippet_name": "water foam solver",
+        "description": "instancing setupcrowds setup",
+        "tags": [
+            "contact",
+            "timeoffset",
+            "light"
+        ]
+    },
+    "4": {
+        "snippet_id": 4,
+        "snippet_name": "sand portal",
+        "description": "convert volume to points",
+        "tags": [
+            "position",
+            "dissipation",
+            "detangle"
+        ]
+    },
+    "5": {
+        "snippet_id": 5,
+        "snippet_name": "tree rigging",
+        "description": "color nodes",
+        "tags": [
+            "geometry",
+            "filter",
+            "frustum"
+        ]
+    },
+    "6": {
+        "snippet_id": 6,
+        "snippet_name": "bubble sim",
+        "description": "moutain model",
+        "tags": [
+            "retopo",
+            "point",
+            "rasterize"
+        ]
+    },
+    "7": {
+        "snippet_id": 7,
+        "snippet_name": "lightning bolts",
+        "description": "retime animation",
+        "tags": [
+            "debug",
+            "volume",
+            "project"
+        ]
+    },
+    "8": {
+        "snippet_id": 8,
+        "snippet_name": "sop occlusion",
+        "description": "cloth tearing setup",
+        "tags": [
+            "vex",
+            "rest",
+            "voxel"
+        ]
+    },
+    "9": {
+        "snippet_id": 9,
+        "snippet_name": "point clustering",
+        "description": "smoke trails setup",
+        "tags": [
+            "simulation",
+            "bounding",
+            "trans"
+        ]
+    },
+    "11": {
+        "snippet_id": 11,
+        "snippet_name": "hide some nodes",
+        "description": "extrapolate into collision",
+        "tags": [
+            "proxy",
+            "bounds",
+            "export"
+        ]
+    },
+    "12": {
+        "snippet_id": 12,
+        "snippet_name": "ocean remesh",
+        "description": "reduce polygons",
+        "tags": [
+            "motionblur",
+            "xform",
+            "clip"
+        ]
+    },
+    "13": {
+        "snippet_id": 13,
+        "snippet_name": "pyro setup",
+        "description": "create pre and post roll",
+        "tags": [
+            "decimate",
+            "particles",
+            "culling"
+        ]
+    },
+    "14": {
+        "snippet_id": 14,
+        "snippet_name": "magic portal",
+        "description": "sparks with motion blur",
+        "tags": [
+            "mesh",
+            "cleanupsops",
+            "clustering"
+        ]
+    },
+    "15": {
+        "snippet_id": 15,
+        "snippet_name": "smoke trail",
+        "description": "sparks effect",
+        "tags": [
+            "disc",
+            "fluid",
+            "delete"
+        ]
+    }
 }
