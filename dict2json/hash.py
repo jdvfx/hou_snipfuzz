@@ -3,7 +3,7 @@ import json
 
 
 # create stable hash from any object
-def create_hash(thing) -> str: 
+def create_hash(thing:object) -> str: 
     h= hashlib.md5(json.dumps(thing).encode('utf-8')).digest()
     return h.hex()
 
